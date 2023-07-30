@@ -1,0 +1,9 @@
+p{
+    color: whitesmoke;
+    font-size: 2rem;
+    text-align: center;
+}
+
+nav{
+    display: none !important;
+}
