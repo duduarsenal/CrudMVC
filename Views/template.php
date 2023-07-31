@@ -9,30 +9,42 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title><?php 
-    
-    //Pega o URL da pagina para colocar como TITLE
-    $url = $_GET['pag'];
-    echo ucfirst($url);
-
-    ?></title>
+    <title><?php
+            //Pega o URL da pagina para colocar como TITLE
+            if (isset($_GET['pag'])) {
+                $url = $_GET['pag'];
+                echo ucfirst($url);
+            } else {
+                echo "Home";
+            }
+            ?></title>
 </head>
 
 <body>
     <!-- CABEÇALHO MEU PARCEIRO -->
-    <nav class="navbar w-[100%] flex items-center bg-[#fffdfd] border-b-[2px] border-b-[#FF000070] h-max min-h-[3rem] px-8">
+    <nav class="navbar w-[100%] flex items-center bg-[#191919] border-b-[2px] border-b-[#FF000070] h-max min-h-[3rem] px-8 text-[whitesmoke]">
         <div class="flex justify-between w-[100%] h-full">
             <h1 class="flex items-center font-[600] text-[1.5rem] h-full px-4 transition-all hover:scale-[1.03]">Crud PHP/MySQL</h1>
             <ul class="flex items-center gap-16">
-                <li class="h-full transition-all hover:bg-[#1f1f1f30]">
+                <li class="h-full transition-all hover:bg-[#2f2f2f]">
                     <a class="h-full flex items-center px-4 text-[1.1rem]" aria-current="page" href="./home">Home</a>
                 </li>
-                <li class="h-full transition-all hover:bg-[#1f1f1f30]">
+                <li class="h-full transition-all hover:bg-[#2f2f2f]">
                     <a class="h-full flex items-center px-4 text-[1.1rem]" href="./login">Login</a>
                 </li>
-                <li class="h-full transition-all hover:bg-[#1f1f1f30]">
+                <li class="h-full transition-all hover:bg-[#2f2f2f]">
                     <a class="h-full flex items-center px-4 text-[1.1rem]" href="./cadastro">Cadastro</a>
                 </li>
+                <?php
+                // session_start();
+                // if (isset($_SESSION['userData'])) {
+                //     if (!empty($_SESSION['userData'])) {
+                ?> <li class="h-full transition-all hover:bg-[#2f2f2f]">
+                            <a class="h-full flex items-center px-4 text-[1.1rem]" href="./perfil">Perfil</a>
+                    </li>
+                <?php //}
+                //}
+                ?>
             </ul>
         </div>
     </nav>
@@ -44,8 +56,8 @@
     <main>
         <?php
 
-            $this->loadViewOnTemplate($nomeView, $dadosModel);
-        
+        $this->loadViewOnTemplate($nomeView, $dadosModel);
+
         ?>
     </main>
     <div class="custom-shape-divider-bottom-1690413374">
