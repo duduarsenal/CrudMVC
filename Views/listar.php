@@ -14,13 +14,14 @@
                     <?php
 
                     $getF = new perfilController();
-                    // $result = $getF->listarFilmes($userData['id']);
-                    // $idUser = $userData['id'];
-                    $result = $getF->listarFilmes('1');
+                    $idUser = $_SESSION['userData']['id'];
+                    $result = $getF->listarFilmes($idUser);
+                    // $result = $getF->listarFilmes('1');
 
                     if ($result === false) {
                     ?>
                         <tr class='border border-solid border-[black] h-8'>
+                            <td class='border border-solid border-[black] text-center'></td>
                             <td class='border border-solid border-[black] text-center'></td>
                             <td class='border border-solid border-[black] text-center'></td>
                             <td class='border border-solid border-[black] text-center'></td>
@@ -32,9 +33,11 @@
                         $row = sizeof($filmes);
                         // console_log(sizeof($filmes));
                         // console_log($filmes);
+                        $count = 0;
                         foreach ($filmes as $valor) {
+                            $count++;
                             echo "<tr class='border border-solid border-[black] h-8'>";
-                                echo "<td class='border border-solid border-[black] text-center p-2'>$valor->idfilme</td>";
+                                echo "<td class='border border-solid border-[black] text-center p-2'>$count</td>";
                                 echo "<td class='border border-solid border-[black] text-center'>$valor->nome</td>";
                                 echo "<td class='border border-solid border-[black] text-center'>$valor->dt_lanc</td>";
                                 echo "<td class='border border-solid border-[black] text-center'>$valor->categoria</td>";
@@ -50,6 +53,6 @@
                 </table>
             </form>
             <div class="flex justify-end items-end w-full">
-                <button onclick="location.href='../perfil/adicionar';" class="cursor-pointer w-max h-[2.25rem] px-4 text-[1.25rem] uppercase font-[600] bg-[#3a86ff] rounded-[0.25rem] transition-all duration-300 ease-in-out outline outline-[3px] outline-[#3a86ff] hover:outline-offset-[0.15rem]" id="btn">Novo Filme</button>
+                <button onclick="location.href='/CrudMVC/perfil/adicionar';" class="cursor-pointer w-max h-[2.25rem] px-4 text-[1.25rem] uppercase font-[600] bg-[#3a86ff] rounded-[0.25rem] transition-all duration-300 ease-in-out outline outline-[3px] outline-[#3a86ff] hover:outline-offset-[0.15rem]" id="btn">Novo Filme</button>
             </div>
         </div>

@@ -9,12 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="./Assets/favicon.png" type="image/png">
+    <link rel="icon" href="/CrudMVC/Assets/favicon.png" type="image/png">
     <title><?php
             //Pega o URL da pagina para colocar como TITLE
             if (isset($_GET['pag'])) {
                 $url = $_GET['pag'];
-                echo ucfirst($url);
+                $url = explode("/", $url);
+                echo ucfirst($url[0]);
             } else {
                 echo "Home";
             }
@@ -37,14 +38,13 @@
                     <a class="h-full flex items-center px-4 text-[1.1rem]" href="/CrudMVC/cadastro">Cadastro</a>
                 </li>
                 <?php
-                // session_start();
-                // if (isset($_SESSION['userData'])) {
-                //     if (!empty($_SESSION['userData'])) {
+                if (isset($_SESSION['userData'])) {
+                    if (!empty($_SESSION['userData'])) {
                 ?> <li class="h-full transition-all hover:bg-[#2f2f2f]">
-                            <a class="h-full flex items-center px-4 text-[1.1rem]" href="../CrudMVC/perfil">Perfil</a>
+                            <a class="h-full flex items-center px-4 text-[1.1rem]" href="/CrudMVC/perfil">Perfil</a>
                     </li>
-                <?php //}
-                //}
+                <?php }
+                }
                 ?>
             </ul>
         </div>

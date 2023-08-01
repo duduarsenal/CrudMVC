@@ -14,7 +14,6 @@ class perfilController extends Controller
 
     public function index()
     {
-        session_start();
         $this->carregarTemplate('perfil', ['funcao' => 'listar']);
     }
 
@@ -25,7 +24,6 @@ class perfilController extends Controller
 
     public function adicionar()
     {
-        // $_SESSION['funcao'] = 'adicionar';
         $this->carregarTemplate('perfil', ['funcao' => 'adicionar']);
     }
 
@@ -36,7 +34,6 @@ class perfilController extends Controller
             $data = $_POST['editar'];
             $data = explode("/", $data);
             $this->editar(['filmeID' => $data[0], 'userID' => $data[1]]);
-            // $this->console_log($_POST['editar']);
 
         } else if (isset($_POST['excluir'])){
 
@@ -45,25 +42,26 @@ class perfilController extends Controller
             $this->excluir(['filmeID' => $data[0], 'userID' => $data[1]]);
 
         } else {
-            $this->console_log("Erro, Metodo não existe");
+            $this->index();
+            // $this->console_log("Erro, Metodo não existe");
         }
     }
 
     public function editar($data)
     {
-        // $_SESSION['funcao'] = 'editar';
         $funcao = ['funcao' => 'editar'];
         extract($funcao);
         array_unshift($data, $funcao);
-        $this->console_log($data);
+        // $this->console_log($data);
         $this->carregarTemplate('perfil', $data);
     }
 
     public function excluir($data)
     {
-        $funcao = ['funcao' => 'editar'];
+        $funcao = ['funcao' => 'excluir'];
         extract($funcao);
         array_unshift($data, $funcao);
+        // $this->console_log($data);
         $this->carregarTemplate('perfil', $data);
     }
 
@@ -81,6 +79,20 @@ class perfilController extends Controller
         return $result;
     }
 
+    public function adicionarFilme($Fname, $Fyear, $Fcategoria, $Fnota, $userID)
+    {
+        //FAÇO A INSTANCIA DA CLASSE USUARIO PARA ACESSAR O METODO DE AUTENTICAÇÃO
+        $f = new Filmes();
+        //AQUI RECEBO OS DADOS PASSADOS VIA PARAMETRO PELO VIEW E PASSO PARA O METODO AUTHLOGIN USANDO A INSTANCIA DE USUARIO
+        $result = $f->addFilme($Fname, $Fyear, $Fcategoria, $Fnota, $userID);
+
+        if ($result === true){
+            return true;
+        } else {
+            return $result;
+        }
+    }
+
     public function listarFilme($idFilme, $user)
     {
         //FAÇO A INSTANCIA DA CLASSE USUARIO PARA ACESSAR O METODO DE AUTENTICAÇÃO
@@ -95,6 +107,39 @@ class perfilController extends Controller
             return $result;
         } else {
             return false;
+        }
+    }
+
+    public function removefilme()
+    {
+        if (isset($_POST['confirmar'])){
+
+            $dados = ($_POST['confirmar']);
+            $dados = explode("/", $dados);
+            $data = ['idFilme' => $dados[0]];
+            $data = $data + ['userID' => $dados[1]];
+            extract($data);
+            
+            $f = new Filmes();
+            $result = $f->deleteFilme($idFilme, $userID);
+
+            if ($result === true) {
+                echo "<script>window.location.href = '/CrudMVC/perfil'</script>";
+            } else {
+                echo "  <script>
+                            alert('Erro ao excluir, tente novamente mais tarde');
+                            console.log('Erro ao cadastrar -> '. $result);
+                        </script>";
+            }
+
+        } else if (isset($_POST['voltar'])){
+
+            echo "<script>window.location.href='/CrudMVC/perfil'</script>";
+
+        } else {
+
+            echo "<script>window.location.href='/CrudMVC/perfil'</script>";
+
         }
     }
 }

@@ -7,19 +7,19 @@
                 <div>
                     <div class="flex flex-col items-center justify-start">
                         <label class="w-max min-w-[80%] text-[1.15rem] font-[500]" for="nome" id="labelNome">Nome do Filme</label>
-                        <input class="w-max min-w-[80%] h-[2.5rem] py-0 px-2 text-[1.2rem] border-2 border-solid border-[#5f5f5f70] rounded-[.25rem]" type="text" name="nomefilme" pattern="[A-Za-z0-9]+" title="Permitido somente letras e numeros" required />
+                        <input class="w-max min-w-[80%] h-[2.5rem] py-0 px-2 text-[1.2rem] border-2 border-solid border-[#5f5f5f70] rounded-[.25rem]" type="text" placeholder="Exemplo: Circulo de Fogo: A Revolta" name="nomefilme" pattern="[A-Za-z0-9].{3,}" title="Permitido somente letras e numeros" required />
                     </div>
                     <div class="flex flex-col items-center justify-start">
                         <label class="w-max min-w-[80%] text-[1.15rem] font-[500]" for="username" id="labelUsername">Data de Lançamento</label>
-                        <input class="w-max min-w-[80%] h-[2.5rem] py-0 px-2 text-[1.2rem] border-2 border-solid border-[#5f5f5f70] rounded-[.25rem]" type="date" name="dt_lanc" required />
+                        <input class="w-max min-w-[80%] h-[2.5rem] py-0 px-2 text-[1.2rem] border-2 border-solid border-[#5f5f5f70] rounded-[.25rem]" type="number" placeholder="Exemplo: 2018" min="1900" max="2024" step="1" name="ano_lanc" title="Digite um ano válido" required />
                     </div>
                     <div class="flex flex-col items-center justify-start">
                         <label class="w-max min-w-[80%] text-[1.15rem] font-[500]" for="email" id="labelEmail">Categoria</label>
-                        <input class="w-max min-w-[80%] h-[2.5rem] py-0 px-2 text-[1.2rem] border-2 border-solid border-[#5f5f5f70] rounded-[.25rem]" type="text" name="categoria" required />
+                        <input class="w-max min-w-[80%] h-[2.5rem] py-0 px-2 text-[1.2rem] border-2 border-solid border-[#5f5f5f70] rounded-[.25rem]" type="text" placeholder="Exemplo: Ação/Ficção Científica" name="categoria" required />
                     </div>
                     <div class="flex flex-col items-center justify-start">
                         <label class="w-max min-w-[80%] text-[1.15rem] font-[500]" for="password" id="labelSenha">Nota</label>
-                        <input class="w-max min-w-[80%] h-[2.5rem] py-0 px-2 text-[1.2rem] border-2 border-solid border-[#5f5f5f70] rounded-[.25rem]" type="number" name="nota" maxlength="2" title="Digite uma nota de 0 a 10" required />
+                        <input class="w-max min-w-[80%] h-[2.5rem] py-0 px-2 text-[1.2rem] border-2 border-solid border-[#5f5f5f70] rounded-[.25rem]" type="number" min="0" max="10" step="0.1" placeholder="Exemplo: 8.5" name="nota" title="Digite uma nota de 0 a 10" required />
                     </div>
                 </div>
 
@@ -28,4 +28,35 @@
                 </div>
 
             </form>
+            <?php
+
+            if (isset($_POST)) {
+
+                if (!empty($_POST)) {
+
+                    $Fname = $_POST['nomefilme'];
+                    $Fyear = $_POST['ano_lanc'];
+                    $Fcategoria = $_POST['categoria'];
+                    $Fnota = $_POST['nota'];
+                    $userID = $_SESSION['userData']['id'];
+
+                    $p = new perfilController();
+                    $result = $p->adicionarFilme($Fname, $Fyear, $Fcategoria, $Fnota, $userID);
+
+                    if ($result === true) {
+                        echo "  <script>
+                                    alert('Filme cadastro com sucesso, redirecionando...');
+                                    setTimeout(() => {
+                                    window.location.href = '/CrudMVC/perfil';
+                                    }, 500);
+                                </script>";
+                    } else {
+                        echo "  <script>
+                                    alert('Erro ao Cadastrar, tente novamente mais tarde');
+                                    console.log('Erro ao cadastrar -> '. $result);
+                                </script>";
+                    }
+                }
+            }
+            ?>
         </div>

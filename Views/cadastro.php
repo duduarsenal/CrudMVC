@@ -21,7 +21,7 @@
 
         <div class="mb-[2.25rem]">
             <div class="relative flex flex-col justify-between min-w-[450px] pt-[1rem] my-[1rem] mx-auto">
-                <input class="w-auto pt-[.3rem] pr-[.3rem] pb-0 pl-[1px] inline-block border-b-2 border-b-[#1f1f1f] bg-transparent outline-none w-[260px] text-[1rem] transition-all duration-300 focus:border-[#ff969680]" type="text" id="nome" name="nome" pattern="[A-Za-z]+" title="Permitido somente letras" required />
+                <input class="w-auto pt-[.3rem] pr-[.3rem] pb-0 pl-[1px] inline-block border-b-2 border-b-[#1f1f1f] bg-transparent outline-none w-[260px] text-[1rem] transition-all duration-300 focus:border-[#ff969680]" type="text" id="nome" name="nome" pattern="^[a-zA-Z].{3,}" title="Permitido somente letras, minimo 3 caracteres." required />
                 <label class="absolute top-0 left-0 w-max text-[1.15rem] text-center pointer-events-none" for="nome" id="labelNome">Nome</label>
             </div>
             <div class="relative flex flex-col justify-between min-w-[450px] pt-[1rem] my-[1rem] mx-auto">
@@ -68,7 +68,7 @@
                 echo "<script>
                 msgSucess('Registrado com sucesso, redirecionando...');
                 setTimeout(() => {
-                  window.location.href = './login';
+                  window.location.href = '/CrudMVC/login';
                 }, 1500);
                 </script>";
             } else if ($result === false) {

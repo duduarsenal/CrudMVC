@@ -15,7 +15,7 @@ Class cadastroController extends Controller{
         //AQUI RECEBO OS DADOS PASSADOS VIA PARAMETRO PELO VIEW E PASSO PARA O METODO AUTHCADASTRO USANDO A INSTANCIA DE USUARIO
         $dados = $u->AuthCadastro($name, $user, $email, $pass);
         
-        //RECEBO A RESPOSTA DA FUNÇÃO SENDO TRUE = CADASTRO COM SUCESS, FALSE = USUARIO JA EXISTE E STRING = ERRO NO BANCO
+        //RECEBO A RESPOSTA DA FUNÇÃO SENDO TRUE = CADASTRO COM SUCESS, FALSE = USUARIO JA EXISTE, STRING == ERRO NO BANCO
         if ($dados === "erro"){
             return $dados;
         } else if($dados == true){
