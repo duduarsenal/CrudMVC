@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="./Assets/favicon.png" type="image/png">
     <title><?php
             //Pega o URL da pagina para colocar como TITLE
             if (isset($_GET['pag'])) {
@@ -27,20 +28,20 @@
             <h1 class="flex items-center font-[600] text-[1.5rem] h-full px-4 transition-all hover:scale-[1.03]">Crud PHP/MySQL</h1>
             <ul class="flex items-center gap-16">
                 <li class="h-full transition-all hover:bg-[#2f2f2f]">
-                    <a class="h-full flex items-center px-4 text-[1.1rem]" aria-current="page" href="./home">Home</a>
+                    <a class="h-full flex items-center px-4 text-[1.1rem]" aria-current="page" href="/CrudMVC/home">Home</a>
                 </li>
                 <li class="h-full transition-all hover:bg-[#2f2f2f]">
-                    <a class="h-full flex items-center px-4 text-[1.1rem]" href="./login">Login</a>
+                    <a class="h-full flex items-center px-4 text-[1.1rem]" href="/CrudMVC/login">Login</a>
                 </li>
                 <li class="h-full transition-all hover:bg-[#2f2f2f]">
-                    <a class="h-full flex items-center px-4 text-[1.1rem]" href="./cadastro">Cadastro</a>
+                    <a class="h-full flex items-center px-4 text-[1.1rem]" href="/CrudMVC/cadastro">Cadastro</a>
                 </li>
                 <?php
                 // session_start();
                 // if (isset($_SESSION['userData'])) {
                 //     if (!empty($_SESSION['userData'])) {
                 ?> <li class="h-full transition-all hover:bg-[#2f2f2f]">
-                            <a class="h-full flex items-center px-4 text-[1.1rem]" href="./perfil">Perfil</a>
+                            <a class="h-full flex items-center px-4 text-[1.1rem]" href="../CrudMVC/perfil">Perfil</a>
                     </li>
                 <?php //}
                 //}
@@ -65,7 +66,7 @@
             <path d="M1200 0L0 0 892.25 114.72 1200 0z" class="shape-fill"></path>
         </svg>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 
 </html>
