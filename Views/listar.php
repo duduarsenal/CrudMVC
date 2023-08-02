@@ -32,8 +32,9 @@
                         $filmes = $result->fetchall(PDO::FETCH_OBJ);
                         $row = sizeof($filmes);
                         // console_log(sizeof($filmes));
-                        // console_log($filmes);
+                        $this->console_log($filmes);
                         $count = 0;
+                        $idUser = $_SESSION['userData']['id'];
                         foreach ($filmes as $valor) {
                             $count++;
                             echo "<tr class='border border-solid border-[black] h-8'>";
@@ -43,8 +44,8 @@
                                 echo "<td class='border border-solid border-[black] text-center'>$valor->categoria</td>";
                                 echo "<td class='border border-solid border-[black] text-center'>$valor->nota</td>";
                                 echo "<td class='flex justify-center gap-4 p-[4px]'>
-                                        <button name='editar' value='$valor->idfilme/1' class='btn-editar bg-[#FFD25A] px-4 font-[600] text-[1.1rem] rounded border-2 border-[#11111180] hover:bg-[#FFD25A90]'>Editar</button>
-                                        <button name='excluir' value='$valor->idfilme/1' class='btn-excluir bg-[#FF785A] px-4 font-[600] text-[1.1rem] rounded border-2 border-[#11111180] hover:bg-[#FF785A90]'>Excluir</button>
+                                        <button name='editar' value='$valor->idfilme/$idUser' class='btn-editar bg-[#FFD25A] px-4 font-[600] text-[1.1rem] rounded border-2 border-[#11111180] hover:bg-[#FFD25A90]'>Editar</button>
+                                        <button name='excluir' value='$valor->idfilme/$idUser' class='btn-excluir bg-[#FF785A] px-4 font-[600] text-[1.1rem] rounded border-2 border-[#11111180] hover:bg-[#FF785A90]'>Excluir</button>
                                     </td>";
                             echo "</tr>";
                         }

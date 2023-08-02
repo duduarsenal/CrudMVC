@@ -8,7 +8,7 @@
                 
                     $getF = new perfilController();
 
-                    // $this->console_log($filmeID.$userID);
+                    $this->console_log($filmeID.$userID);
 
                     $result = $getF->listarFilme($filmeID, $userID);
 

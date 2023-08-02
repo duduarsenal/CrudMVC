@@ -5,8 +5,8 @@
 </style>
 
 <?php
-session_start();
 // $this->console_log($_SESSION['userData']);
+session_start();
     if (isset($_SESSION['userData'])) {
         if (!empty($_SESSION['userData'])) {
 ?>
@@ -55,7 +55,8 @@ session_start();
         <?php 
             $funcao = (!empty($dadosModel[0])) ? $dadosModel[0] : $dadosModel['funcao'];
             // $this->console_log($funcao);
-            // $this->console_log($dadosModel);
+            array_shift($dadosModel);
+            $this->console_log($dadosModel);
             $this->carregarTemplate($funcao == 'listar' ? 'listar' : $funcao, $dadosModel);
         ?>
         <footer class="absolute bottom-0 pl-[256px] left-0 w-full h-[3rem] flex items-center justify-center pointer-events-none">

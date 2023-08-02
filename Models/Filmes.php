@@ -4,6 +4,15 @@ require_once 'Conexao.php';
 class Filmes
 {
 
+    function console_log($output, $with_script_tags = true) {
+        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+    ');';
+        if ($with_script_tags) {
+            $js_code = '<script>' . $js_code . '</script>';
+        }
+        echo $js_code;
+    }
+
     private $con;
 
     public function __construct()
@@ -20,15 +29,6 @@ class Filmes
         where f.iduser = '$userID';";
 
         $sql_query = $this->con->query($sql_cmd); //prepara e executa o comando SQL
-
-        // function console_log($output, $with_script_tags = true) {
-        //     $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
-        // ');';
-        //     if ($with_script_tags) {
-        //         $js_code = '<script>' . $js_code . '</script>';
-        //     }
-        //     echo $js_code;
-        // }
 
         $qnt = $sql_query->rowCount();
         if ($qnt == 0) {
