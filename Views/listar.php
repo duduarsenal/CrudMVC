@@ -1,7 +1,8 @@
-        <!-- FORMULARIO COM FILMES -->
-        <div class="relative flex flex-col items-center justify-center w-[80%] gap-8 rounded-[0.5rem] p-4 border-2 border-[#ff000050] bg-[#F9F8F8] outline outline-[3px] outline-[#ff00004d] outline-offset-[.4rem] drop-shadow-[0_0_20px_rgba(255,0,0,0.3)] mb-[3rem]">
+
+ <!-- FORMULARIO COM FILMES -->
+        <div class="relative flex flex-col items-center justify-center mx-[1rem] lg:mx-0 w-[95%] min-w-[320px] lg:w-[80%] gap-8 rounded-[0.5rem] p-4 border-2 border-[#ff000050] bg-[#F9F8F8] outline outline-[3px] outline-[#ff00004d] outline-offset-[.4rem] drop-shadow-[0_0_20px_rgba(255,0,0,0.3)] mb-[3rem] overflow-hidden">
             <h1 class="w-full text-[1.5rem] font-[600] text-center">Lista de Filmes</h1>
-            <form class="flex flex-col justify-center w-full" method="POST" action="/CrudMVC/perfil/update">
+            <form class="flex flex-col justify-center w-full min-w-[320px] overflow-x-scroll lg:overflow-auto" method="POST" action="/CrudMVC/perfil/update">
                 <table class="border border-solid border-[black]">
                     <tr class="h-12">
                         <th>#</th>
@@ -43,9 +44,9 @@
                                 echo "<td class='border border-solid border-[black] text-center'>$valor->dt_lanc</td>";
                                 echo "<td class='border border-solid border-[black] text-center'>$valor->categoria</td>";
                                 echo "<td class='border border-solid border-[black] text-center'>$valor->nota</td>";
-                                echo "<td class='flex justify-center gap-4 p-[4px]'>
-                                        <button name='editar' value='$valor->idfilme/$idUser' class='btn-editar bg-[#FFD25A] px-4 font-[600] text-[1.1rem] rounded border-2 border-[#11111180] hover:bg-[#FFD25A90]'>Editar</button>
-                                        <button name='excluir' value='$valor->idfilme/$idUser' class='btn-excluir bg-[#FF785A] px-4 font-[600] text-[1.1rem] rounded border-2 border-[#11111180] hover:bg-[#FF785A90]'>Excluir</button>
+                                echo "<td class='flex flex-col lg:flex-row justify-center items-center h-full lg:gap-4 p-[4px] m-auto'>
+                                        <button name='editar' value='$valor->idfilme/$idUser' class='btn-editar bg-[#FFD25A] px-4 font-[600] text-[1.1rem] rounded border-2 border-[#11111180] hover:bg-[#FFD25A90] my-[4px]'>Editar</button>
+                                        <button name='excluir' value='$valor->idfilme/$idUser' class='btn-excluir bg-[#FF785A] px-4 font-[600] text-[1.1rem] rounded border-2 border-[#11111180] hover:bg-[#FF785A90] my-[4px]'>Excluir</button>
                                     </td>";
                             echo "</tr>";
                         }

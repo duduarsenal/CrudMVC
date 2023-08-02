@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="/CrudMVC/Css/login.css">
 <script src="/CrudMVC/Js/script.js"></script>
 
-<section class="flex items-center justify-center">
+<section class="min-w-[320px] sm:w-auto flex items-center justify-center">
 
-      <form class="flex flex-col justify-between bg-[white] min-h-[20rem] min-w-[20rem] p-4 border-2 border-[#ff000080] drop-shadow-[0_0_20px_rgba(255,0,0,0.7)] outline outline-[3px] outline-[#ff00004d] outline-offset-[.4rem] rounded-[.5rem]" method="POST">
+      <form class="flex flex-col justify-between bg-[white] sm:min-h-[20rem] sm:min-w-[20rem] p-2 sm:p-4 border-2 border-[#ff000080] drop-shadow-[0_0_20px_rgba(255,0,0,0.7)] outline outline-[3px] outline-[#ff00004d] outline-offset-[.4rem] rounded-[.5rem]" method="POST">
 
         <h1 class="w-full text-[1.5rem] font-[600] text-center">Acesse sua conta</h1>
 

@@ -4,6 +4,7 @@ Class loginController extends Controller{
 
     public function index()
     {
+        session_start();
         //CARREGO O TEMPLATE DE LOGIN (VIEWS)
         $this->carregarTemplate('login');
     }
