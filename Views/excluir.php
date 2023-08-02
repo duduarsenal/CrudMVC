@@ -36,7 +36,7 @@
                     </div>
                     <div class="flex flex-col items-center justify-start">
                         <label class="w-max min-w-[80%] text-[1.15rem] font-[500]" for="username" id="labelUsername">Data de Lançamento</label>
-                        <input class="w-max min-w-[80%] h-[2.5rem] py-0 px-2 text-[1.2rem] border-2 border-solid border-[#5f5f5f70] rounded-[.25rem]" type="number" name="dt_lanc" readonly value='<?php echo $lançamento ?>' required />
+                        <input class="w-max min-w-[80%] h-[2.5rem] py-0 px-2 text-[1.2rem] border-2 border-solid border-[#5f5f5f70] rounded-[.25rem]" type="number" name="ano_lanc" readonly value='<?php echo $lançamento ?>' required />
                     </div>
                     <div class="flex flex-col items-center justify-start">
                         <label class="w-max min-w-[80%] text-[1.15rem] font-[500]" for="email" id="labelEmail">Categoria</label>

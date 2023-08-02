@@ -4,9 +4,9 @@ require_once 'Conexao.php';
 class Filmes
 {
 
-    function console_log($output, $with_script_tags = true) {
-        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
-    ');';
+    function console_log($output, $with_script_tags = true) 
+    {
+        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
         if ($with_script_tags) {
             $js_code = '<script>' . $js_code . '</script>';
         }
@@ -78,7 +78,26 @@ class Filmes
         }
     }
 
-    public function deleteFilme($idFilme, $userID){
+    public function editFilme($Fname, $Fyear, $Fcategoria, $Fnota, $idFilme, $userID)
+    {
+
+        $sql_cmd = "UPDATE filmesFav AS f JOIN cadastro AS c 
+        ON f.idFilme = c.id 
+        SET f.nome = '$Fname', f.dt_lanc = '$Fyear', f.categoria = '$Fcategoria', f.nota = '$Fnota' 
+        WHERE f.idFilme = '$idFilme' AND f.iduser = '$userID';";
+
+        $sql_query = $this->con->query($sql_cmd); //prepara e executa o comando SQL;
+
+        if ($sql_query){
+            return true;
+        } else {
+            return $sql_query;
+        }
+
+    }
+
+    public function deleteFilme($idFilme, $userID)
+    {
         
         $sql_cmd = "DELETE FROM filmesFav WHERE idFilme = '$idFilme' AND iduser = '$userID';";
         $sql_query = $this->con->query($sql_cmd); //prepara e executa o comando SQL;
@@ -90,4 +109,5 @@ class Filmes
         }
 
     }
+
 }

@@ -1,11 +1,11 @@
 <?php
-
 class perfilController extends Controller
 {
 
-    function console_log($output, $with_script_tags = true) {
-        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
-    ');';
+    function console_log($output, $with_script_tags = true)
+    {
+        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+            ');';
         if ($with_script_tags) {
             $js_code = '<script>' . $js_code . '</script>';
         }
@@ -29,18 +29,16 @@ class perfilController extends Controller
 
     public function update()
     {
-        if (isset($_POST['editar'])){
+        if (isset($_POST['editar'])) {
 
             $data = $_POST['editar'];
             $data = explode("/", $data);
             $this->editar(['filmeID' => $data[0], 'userID' => $data[1]]);
-
-        } else if (isset($_POST['excluir'])){
+        } else if (isset($_POST['excluir'])) {
 
             $data = $_POST['excluir'];
             $data = explode("/", $data);
             $this->excluir(['filmeID' => $data[0], 'userID' => $data[1]]);
-
         } else {
             $this->index();
             // $this->console_log("Erro, Metodo não existe");
@@ -86,7 +84,7 @@ class perfilController extends Controller
         //AQUI RECEBO OS DADOS PASSADOS VIA PARAMETRO PELO VIEW E PASSO PARA O METODO AUTHLOGIN USANDO A INSTANCIA DE USUARIO
         $result = $f->addFilme($Fname, $Fyear, $Fcategoria, $Fnota, $userID);
 
-        if ($result === true){
+        if ($result === true) {
             return true;
         } else {
             return $result;
@@ -101,7 +99,7 @@ class perfilController extends Controller
         $result = $f->getFilme($idFilme, $user);
         // $this->console_log($result);
 
-        if ($result === "erro"){
+        if ($result === "erro") {
             return "erro";
         } else if ($result == true) {
             return $result;
@@ -112,14 +110,14 @@ class perfilController extends Controller
 
     public function removefilme()
     {
-        if (isset($_POST['confirmar'])){
+        if (isset($_POST['confirmar'])) {
 
             $dados = ($_POST['confirmar']);
             $dados = explode("/", $dados);
             $data = ['idFilme' => $dados[0]];
             $data = $data + ['userID' => $dados[1]];
             extract($data);
-            
+
             $f = new Filmes();
             $result = $f->deleteFilme($idFilme, $userID);
 
@@ -131,15 +129,43 @@ class perfilController extends Controller
                             console.log('Erro ao cadastrar -> '. $result);
                         </script>";
             }
-
-        } else if (isset($_POST['voltar'])){
+        } else if (isset($_POST['voltar'])) {
 
             echo "<script>window.location.href='/CrudMVC/perfil'</script>";
-
         } else {
 
             echo "<script>window.location.href='/CrudMVC/perfil'</script>";
+        }
+    }
 
+    public function editarfilme()
+    {
+        session_start();
+        if (isset($_POST['editarfilme'])) {
+
+                $Fname = $_POST['nomefilme'];
+                $Fyear = $_POST['ano_lanc'];
+                $Fcategoria = $_POST['categoria'];
+                $Fnota = $_POST['nota'];
+
+                $idFilme = $_POST['editarfilme'];
+                $userID = $_SESSION['userData']['id'];
+
+                $f = new Filmes();
+                $result = $f->editFilme($Fname, $Fyear, $Fcategoria, $Fnota, $idFilme, $userID);
+
+                if ($result === true) {
+                    echo "<script>window.location.href = '/CrudMVC/perfil';</script>";
+                    // $this->console_log("Deu bom");
+                } else {
+                    echo "<script>
+                                alert('Erro ao editar, tente novamente mais tarde');
+                                console.log('Erro ao cadastrar -> '. $result);
+                        </script>";
+                    // $this->console_log("Deu ruim");
+            }
+        } else {
+            echo "<script>Não entrou no if</script>";
         }
     }
 }
